@@ -14,19 +14,20 @@ def create_jira_ticket(data, ticket_number):
     }
     auth = (jira_config['username'], jira_config['password'])
 
-    summary = f"[Mass ticket# {ticket_number}"
+    summary = f"[TEST]wd recruiter mass ticket# {ticket_number}"
     dynamic_fields = {
         "customfield_12647": data[0],
-        "customfield_11763": {"id": $ID1} if data[1] == "1" else "",
-        "customfield_10150": [{"id": $ID2}, {"id": $ID3}] if data[1] == "1" else {"id": $ID4},
+        "customfield_11763": [{"id": "12590"}] if data[1] == "1" else [],
+        "customfield_10150": [{"id":"10412"},{"id": "16064"}] if data[1] == "1" else [{"id": "16064"}],
         "customfield_12548": "" if data[1] == "1" else data[0],
         "customfield_10089": data[2],
         "customfield_10090": data[3],
         "customfield_12040": data[4],
-        "customfield_12543": data[5],
+#        "customfield_12543": data[5], this is responsible person. skipped for now
         "customfield_10622": data[6],
-        "customfield_10191": {"id": $ID5},
-        "customfield_12573": {"id": $ID6}
+        "customfield_10191": {"id": "16208"},
+        "customfield_12573": {"id": "16195"}
+
     }
 
     payload = {
@@ -34,7 +35,7 @@ def create_jira_ticket(data, ticket_number):
         "requestTypeId": jira_config['requestTypeId'],
         "requestFieldValues": {
             "summary": summary,
-            "customfield_12634": "YYYY-MM-DD",
+            "customfield_12634": "2023-12-30",
             **dynamic_fields
         }
     }
