@@ -1,0 +1,7 @@
+{
+    "username": "$USER",
+    "password": "$TOKEN",
+    "jira_url": "https://$ORG.atlassian.net/",
+    "serviceDeskId": "$N",
+    "requestTypeId": "$N"
+  }
