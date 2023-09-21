@@ -23,7 +23,7 @@ def create_jira_ticket(data, ticket_number):
         "customfield_10089": data[2],
         "customfield_10090": data[3],
         "customfield_12040": data[4],
-#        "customfield_12543": data[5], this is responsible person. skipped for now
+        "customfield_12543": [{"emailAddress": data[5]}], #this is responsible person.
         "customfield_10622": data[6],
         "customfield_10191": {"id": "16208"},
         "customfield_12573": {"id": "16195"}
