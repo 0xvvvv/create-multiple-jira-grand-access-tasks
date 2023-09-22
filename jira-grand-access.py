@@ -54,7 +54,7 @@ def create_jira_ticket(data, ticket_number):
 
 
 # Read data from CSV
-with open('SBA-Pilot-region-to-Jira.csv', 'r') as csv_file:
+with open('data.csv', 'r') as csv_file:
     csv_reader = csv.reader(csv_file)
     next(csv_reader)  # Skip header
     for i, row in enumerate(csv_reader, 1):
