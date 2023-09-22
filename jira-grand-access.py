@@ -14,16 +14,16 @@ def create_jira_ticket(data, ticket_number):
     }
     auth = (jira_config['username'], jira_config['password'])
 
-    summary = f"[TEST]wd recruiter mass ticket# {ticket_number}"
+    summary = f"[auto-wd] WD recruiter mass ticket# {ticket_number}"
     dynamic_fields = {
         "customfield_12647": data[0],
         "customfield_11763": [{"id": "12590"}] if data[1] == "1" else [],
-        "customfield_10150": [{"id":"10412"},{"id": "16064"}] if data[1] == "1" else [{"id": "16064"}],
+        "customfield_10150": [{"id": "10412"}, {"id": "16064"}] if data[1] == "1" else [{"id": "16064"}],
         "customfield_12548": "" if data[1] == "1" else data[0],
         "customfield_10089": data[2],
         "customfield_10090": data[3],
         "customfield_12040": data[4],
-        "customfield_12543": [{"emailAddress": data[5]}], #this is responsible person.
+        "customfield_12543": [{"accountId": data[5]}],
         "customfield_10622": data[6],
         "customfield_10191": {"id": "16208"},
         "customfield_12573": {"id": "16195"}
@@ -41,7 +41,7 @@ def create_jira_ticket(data, ticket_number):
     }
 
     print(f"Sending request for Ticket {ticket_number}:")
-    print(json.dumps(payload, indent=4))  # Print the request payload before sending
+#    print(json.dumps(payload, indent=4))  # Print the request payload before sending
 
     response = requests.post(url, headers=headers, auth=auth, json=payload)
 
@@ -54,7 +54,7 @@ def create_jira_ticket(data, ticket_number):
 
 
 # Read data from CSV
-with open('data.csv', 'r') as csv_file:
+with open('SBA-Pilot-region-to-Jira.csv', 'r') as csv_file:
     csv_reader = csv.reader(csv_file)
     next(csv_reader)  # Skip header
     for i, row in enumerate(csv_reader, 1):
